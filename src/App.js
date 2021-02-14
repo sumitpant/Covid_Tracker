@@ -18,10 +18,18 @@ function App() {
   const[dailyInfo ,setDailyInfo]=useState({});
   const[state_ut,setState_UT]=useState();
   const[mapstate,setMapState]=useState();
-  const handlerState=({value})=>{
-    setMapState({value})
+  let code
+  const handlerState=(e)=>{
+    
+     if(e.target)
+     
+       code=state_ut.filter((data)=>data.statecode===e.target.id)
+      setMapState(code)
+     
+    
 
   }
+   
 
   let today = new Date();
   let no_Of_Days = returnDays(today);
@@ -61,14 +69,14 @@ function App() {
 
       <div className="body">
         <div className="left__body">
-          <Figures active={dailyCases} death={deceased} recovered={recovered} daily={dailyInfo} />
-          <TableData states={state_ut}/>
+          <Figures active={mapstate?mapstate[0].active:dailyCases} death={mapstate?mapstate[0].deaths:deceased} recovered={mapstate?mapstate[0].recovered:recovered} daily={dailyInfo} />
+          <TableData states={state_ut} handle={handlerState}/>
         </div>
         <div className="right__body">
           <div className="right__Cards">
-            <CardCom info={state_ut?state_ut[0].active:'loading'} bgcolor={'#facdf7'} textname={'Active'}/>
-            <CardCom info={state_ut?state_ut[0].recovered:'loading'} bgcolor={'#aeeef2'} textname={'Recovered'}/>
-            <CardCom info={state_ut?state_ut[0].deaths:'loading'} bgcolor={'#b3faac'} textname={'Deceased'}/>
+            <CardCom info={mapstate?mapstate[0].active:(state_ut?state_ut[0].active:'loading')} bgcolor={'#facdf7'} textname={'Active'}/>
+            <CardCom info={mapstate?mapstate[0].active:(state_ut?state_ut[0].recovered:'loading')} bgcolor={'#aeeef2'} textname={'Recovered'}/>
+            <CardCom info={mapstate?mapstate[0].deaths:(state_ut?state_ut[0].deaths:'loading')} bgcolor={'#b3faac'} textname={'Deceased'}/>
           </div>
           <div className="maps">
            

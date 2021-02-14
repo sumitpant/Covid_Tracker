@@ -29,6 +29,7 @@ function Figures({ active, death, recovered ,daily}) {
  
 
   return (
+   
     <Card className={classes.root}>
       <CardContent>
         

@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-function TableData({states}) {
+function TableData({states,handle}) {
 
     // let values=states.map((data)=>{
     //     return(data)
@@ -75,12 +75,12 @@ function TableData({states}) {
             
             { onlystates && onlystates.map((data,key)=>{
                            return (
-                  <TableRow key ={data.statecode}>
-                       <TableCell> {data.state}</TableCell>
-                       <TableCell> {data.confirmed}</TableCell>
-                    <TableCell> {data.active}</TableCell>
-                        <TableCell> {data.recovered}</TableCell>
-                    <TableCell> {data.deaths}</TableCell>
+                  <TableRow key ={data.statecode} >
+                       <TableCell onMouseOver={(e)=>handle(e)}  id={data.statecode}> {data.state}</TableCell>
+                       <TableCell onMouseOver={(e)=>handle(e)}  id={data.statecode} > {data.confirmed}</TableCell>
+                    <TableCell  onMouseOver={(e)=>handle(e)}  id={data.statecode}> {data.active}</TableCell>
+                        <TableCell  onMouseOver={(e)=>handle(e)}  id={data.statecode}> {data.recovered}</TableCell>
+                    <TableCell  onMouseOver={(e)=>handle(e)}  id={data.statecode}> {data.deaths}</TableCell>
                     </TableRow>)
             }) }
             
