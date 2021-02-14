@@ -1,0 +1,8 @@
+.charts{
+    display: flex;
+    justify-content: space-between;
+}
+.line{
+   width:250px;
+   height:100px
+}
